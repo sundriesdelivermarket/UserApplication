@@ -1,0 +1,23 @@
+.button {
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.blue-button {
+  background-color: #25c4f5; /* Sky blue */
+}
+.green-button{
+    background-color: #2cf568;
+}
+.orange-button{
+    background-color: #f75e05;
+}
+.circular-button {
+  border-radius: 50%;
+}

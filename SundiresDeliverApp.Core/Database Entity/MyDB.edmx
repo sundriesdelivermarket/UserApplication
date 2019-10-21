@@ -1,0 +1,478 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SundriesMarketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AD_MSITMCAT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="MachineId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MachineIp" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MS_COMCRE_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AD_MSITMTYPE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="MachineId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MachineIp" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MS_COMCRE_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AD_MSITMCAT_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Descrption" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AD_MSITMUNIT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="MachineId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MachineIp" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MS_COMCRE_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AD_MSITMCAT_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AD_MSITMTYPE_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MS_COMCRE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="MachineID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MachineIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="AboutUs" Type="nvarchar(max)" />
+          <Property Name="AddressLine1" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="AddressLine2" Type="nvarchar(max)" />
+          <Property Name="FAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PinCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mobile2" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="GSTNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PANNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContactPerson" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="WebSite" Type="nvarchar" MaxLength="250" />
+          <Property Name="Logo" Type="nvarchar(max)" />
+          <Property Name="Stamp" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__AD_MSITMC__MS_CO__014935CB">
+          <End Role="MS_COMCRE" Type="Self.MS_COMCRE" Multiplicity="1" />
+          <End Role="AD_MSITMCAT" Type="Self.AD_MSITMCAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MS_COMCRE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AD_MSITMCAT">
+              <PropertyRef Name="MS_COMCRE_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AD_MSITMT__AD_MS__0519C6AF">
+          <End Role="AD_MSITMCAT" Type="Self.AD_MSITMCAT" Multiplicity="1" />
+          <End Role="AD_MSITMTYPE" Type="Self.AD_MSITMTYPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AD_MSITMCAT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AD_MSITMTYPE">
+              <PropertyRef Name="AD_MSITMCAT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AD_MSITMT__MS_CO__0425A276">
+          <End Role="MS_COMCRE" Type="Self.MS_COMCRE" Multiplicity="1" />
+          <End Role="AD_MSITMTYPE" Type="Self.AD_MSITMTYPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MS_COMCRE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AD_MSITMTYPE">
+              <PropertyRef Name="MS_COMCRE_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AD_MSITMU__AD_MS__0AD2A005">
+          <End Role="AD_MSITMTYPE" Type="Self.AD_MSITMTYPE" Multiplicity="1" />
+          <End Role="AD_MSITMUNIT" Type="Self.AD_MSITMUNIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AD_MSITMTYPE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AD_MSITMUNIT">
+              <PropertyRef Name="AD_MSITMTYPE_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AD_MSITMU__AD_MS__0BC6C43E">
+          <End Role="AD_MSITMCAT" Type="Self.AD_MSITMCAT" Multiplicity="1" />
+          <End Role="AD_MSITMUNIT" Type="Self.AD_MSITMUNIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AD_MSITMCAT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AD_MSITMUNIT">
+              <PropertyRef Name="AD_MSITMCAT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AD_MSITMU__MS_CO__0CBAE877">
+          <End Role="MS_COMCRE" Type="Self.MS_COMCRE" Multiplicity="1" />
+          <End Role="AD_MSITMUNIT" Type="Self.AD_MSITMUNIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MS_COMCRE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AD_MSITMUNIT">
+              <PropertyRef Name="MS_COMCRE_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SundriesMarketModelStoreContainer">
+          <EntitySet Name="AD_MSITMCAT" EntityType="Self.AD_MSITMCAT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AD_MSITMTYPE" EntityType="Self.AD_MSITMTYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AD_MSITMUNIT" EntityType="Self.AD_MSITMUNIT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MS_COMCRE" EntityType="Self.MS_COMCRE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AD_MSITMC__MS_CO__014935CB" Association="Self.FK__AD_MSITMC__MS_CO__014935CB">
+            <End Role="MS_COMCRE" EntitySet="MS_COMCRE" />
+            <End Role="AD_MSITMCAT" EntitySet="AD_MSITMCAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AD_MSITMT__AD_MS__0519C6AF" Association="Self.FK__AD_MSITMT__AD_MS__0519C6AF">
+            <End Role="AD_MSITMCAT" EntitySet="AD_MSITMCAT" />
+            <End Role="AD_MSITMTYPE" EntitySet="AD_MSITMTYPE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AD_MSITMT__MS_CO__0425A276" Association="Self.FK__AD_MSITMT__MS_CO__0425A276">
+            <End Role="MS_COMCRE" EntitySet="MS_COMCRE" />
+            <End Role="AD_MSITMTYPE" EntitySet="AD_MSITMTYPE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AD_MSITMU__AD_MS__0AD2A005" Association="Self.FK__AD_MSITMU__AD_MS__0AD2A005">
+            <End Role="AD_MSITMTYPE" EntitySet="AD_MSITMTYPE" />
+            <End Role="AD_MSITMUNIT" EntitySet="AD_MSITMUNIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AD_MSITMU__AD_MS__0BC6C43E" Association="Self.FK__AD_MSITMU__AD_MS__0BC6C43E">
+            <End Role="AD_MSITMCAT" EntitySet="AD_MSITMCAT" />
+            <End Role="AD_MSITMUNIT" EntitySet="AD_MSITMUNIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AD_MSITMU__MS_CO__0CBAE877" Association="Self.FK__AD_MSITMU__MS_CO__0CBAE877">
+            <End Role="MS_COMCRE" EntitySet="MS_COMCRE" />
+            <End Role="AD_MSITMUNIT" EntitySet="AD_MSITMUNIT" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SundriesMarketModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AD_MSITMCAT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MachineId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MachineIp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MS_COMCRE_Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShortName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MS_COMCRE" Relationship="Self.FK__AD_MSITMC__MS_CO__014935CB" FromRole="AD_MSITMCAT" ToRole="MS_COMCRE" />
+          <NavigationProperty Name="AD_MSITMTYPE" Relationship="Self.FK__AD_MSITMT__AD_MS__0519C6AF" FromRole="AD_MSITMCAT" ToRole="AD_MSITMTYPE" />
+          <NavigationProperty Name="AD_MSITMUNIT" Relationship="Self.FK__AD_MSITMU__AD_MS__0BC6C43E" FromRole="AD_MSITMCAT" ToRole="AD_MSITMUNIT" />
+        </EntityType>
+        <EntityType Name="AD_MSITMTYPE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MachineId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MachineIp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MS_COMCRE_Id" Type="Guid" Nullable="false" />
+          <Property Name="AD_MSITMCAT_Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShortName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descrption" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AD_MSITMCAT" Relationship="Self.FK__AD_MSITMT__AD_MS__0519C6AF" FromRole="AD_MSITMTYPE" ToRole="AD_MSITMCAT" />
+          <NavigationProperty Name="MS_COMCRE" Relationship="Self.FK__AD_MSITMT__MS_CO__0425A276" FromRole="AD_MSITMTYPE" ToRole="MS_COMCRE" />
+          <NavigationProperty Name="AD_MSITMUNIT" Relationship="Self.FK__AD_MSITMU__AD_MS__0AD2A005" FromRole="AD_MSITMTYPE" ToRole="AD_MSITMUNIT" />
+        </EntityType>
+        <EntityType Name="AD_MSITMUNIT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MachineId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MachineIp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MS_COMCRE_Id" Type="Guid" Nullable="false" />
+          <Property Name="AD_MSITMCAT_Id" Type="Guid" Nullable="false" />
+          <Property Name="AD_MSITMTYPE_Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AD_MSITMCAT" Relationship="Self.FK__AD_MSITMU__AD_MS__0BC6C43E" FromRole="AD_MSITMUNIT" ToRole="AD_MSITMCAT" />
+          <NavigationProperty Name="AD_MSITMTYPE" Relationship="Self.FK__AD_MSITMU__AD_MS__0AD2A005" FromRole="AD_MSITMUNIT" ToRole="AD_MSITMTYPE" />
+          <NavigationProperty Name="MS_COMCRE" Relationship="Self.FK__AD_MSITMU__MS_CO__0CBAE877" FromRole="AD_MSITMUNIT" ToRole="MS_COMCRE" />
+        </EntityType>
+        <EntityType Name="MS_COMCRE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MachineID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MachineIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShortName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AboutUs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressLine2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mobile2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GSTNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PANNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContactPerson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WebSite" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Stamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AD_MSITMCAT" Relationship="Self.FK__AD_MSITMC__MS_CO__014935CB" FromRole="MS_COMCRE" ToRole="AD_MSITMCAT" />
+          <NavigationProperty Name="AD_MSITMTYPE" Relationship="Self.FK__AD_MSITMT__MS_CO__0425A276" FromRole="MS_COMCRE" ToRole="AD_MSITMTYPE" />
+          <NavigationProperty Name="AD_MSITMUNIT" Relationship="Self.FK__AD_MSITMU__MS_CO__0CBAE877" FromRole="MS_COMCRE" ToRole="AD_MSITMUNIT" />
+        </EntityType>
+        <Association Name="FK__AD_MSITMC__MS_CO__014935CB">
+          <End Role="MS_COMCRE" Type="Self.MS_COMCRE" Multiplicity="1" />
+          <End Role="AD_MSITMCAT" Type="Self.AD_MSITMCAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MS_COMCRE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AD_MSITMCAT">
+              <PropertyRef Name="MS_COMCRE_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AD_MSITMT__AD_MS__0519C6AF">
+          <End Role="AD_MSITMCAT" Type="Self.AD_MSITMCAT" Multiplicity="1" />
+          <End Role="AD_MSITMTYPE" Type="Self.AD_MSITMTYPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AD_MSITMCAT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AD_MSITMTYPE">
+              <PropertyRef Name="AD_MSITMCAT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AD_MSITMU__AD_MS__0BC6C43E">
+          <End Role="AD_MSITMCAT" Type="Self.AD_MSITMCAT" Multiplicity="1" />
+          <End Role="AD_MSITMUNIT" Type="Self.AD_MSITMUNIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AD_MSITMCAT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AD_MSITMUNIT">
+              <PropertyRef Name="AD_MSITMCAT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AD_MSITMT__MS_CO__0425A276">
+          <End Role="MS_COMCRE" Type="Self.MS_COMCRE" Multiplicity="1" />
+          <End Role="AD_MSITMTYPE" Type="Self.AD_MSITMTYPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MS_COMCRE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AD_MSITMTYPE">
+              <PropertyRef Name="MS_COMCRE_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AD_MSITMU__AD_MS__0AD2A005">
+          <End Role="AD_MSITMTYPE" Type="Self.AD_MSITMTYPE" Multiplicity="1" />
+          <End Role="AD_MSITMUNIT" Type="Self.AD_MSITMUNIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AD_MSITMTYPE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AD_MSITMUNIT">
+              <PropertyRef Name="AD_MSITMTYPE_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AD_MSITMU__MS_CO__0CBAE877">
+          <End Role="MS_COMCRE" Type="Self.MS_COMCRE" Multiplicity="1" />
+          <End Role="AD_MSITMUNIT" Type="Self.AD_MSITMUNIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MS_COMCRE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AD_MSITMUNIT">
+              <PropertyRef Name="MS_COMCRE_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SundriesMarketEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AD_MSITMCAT" EntityType="Self.AD_MSITMCAT" />
+          <EntitySet Name="AD_MSITMTYPE" EntityType="Self.AD_MSITMTYPE" />
+          <EntitySet Name="AD_MSITMUNIT" EntityType="Self.AD_MSITMUNIT" />
+          <EntitySet Name="MS_COMCRE" EntityType="Self.MS_COMCRE" />
+          <AssociationSet Name="FK__AD_MSITMC__MS_CO__014935CB" Association="Self.FK__AD_MSITMC__MS_CO__014935CB">
+            <End Role="MS_COMCRE" EntitySet="MS_COMCRE" />
+            <End Role="AD_MSITMCAT" EntitySet="AD_MSITMCAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AD_MSITMT__AD_MS__0519C6AF" Association="Self.FK__AD_MSITMT__AD_MS__0519C6AF">
+            <End Role="AD_MSITMCAT" EntitySet="AD_MSITMCAT" />
+            <End Role="AD_MSITMTYPE" EntitySet="AD_MSITMTYPE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AD_MSITMU__AD_MS__0BC6C43E" Association="Self.FK__AD_MSITMU__AD_MS__0BC6C43E">
+            <End Role="AD_MSITMCAT" EntitySet="AD_MSITMCAT" />
+            <End Role="AD_MSITMUNIT" EntitySet="AD_MSITMUNIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AD_MSITMT__MS_CO__0425A276" Association="Self.FK__AD_MSITMT__MS_CO__0425A276">
+            <End Role="MS_COMCRE" EntitySet="MS_COMCRE" />
+            <End Role="AD_MSITMTYPE" EntitySet="AD_MSITMTYPE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AD_MSITMU__AD_MS__0AD2A005" Association="Self.FK__AD_MSITMU__AD_MS__0AD2A005">
+            <End Role="AD_MSITMTYPE" EntitySet="AD_MSITMTYPE" />
+            <End Role="AD_MSITMUNIT" EntitySet="AD_MSITMUNIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AD_MSITMU__MS_CO__0CBAE877" Association="Self.FK__AD_MSITMU__MS_CO__0CBAE877">
+            <End Role="MS_COMCRE" EntitySet="MS_COMCRE" />
+            <End Role="AD_MSITMUNIT" EntitySet="AD_MSITMUNIT" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SundriesMarketModelStoreContainer" CdmEntityContainer="SundriesMarketEntities">
+          <EntitySetMapping Name="AD_MSITMCAT">
+            <EntityTypeMapping TypeName="SundriesMarketModel.AD_MSITMCAT">
+              <MappingFragment StoreEntitySet="AD_MSITMCAT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="MachineIp" ColumnName="MachineIp" />
+                <ScalarProperty Name="MS_COMCRE_Id" ColumnName="MS_COMCRE_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AD_MSITMTYPE">
+            <EntityTypeMapping TypeName="SundriesMarketModel.AD_MSITMTYPE">
+              <MappingFragment StoreEntitySet="AD_MSITMTYPE">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="MachineIp" ColumnName="MachineIp" />
+                <ScalarProperty Name="MS_COMCRE_Id" ColumnName="MS_COMCRE_Id" />
+                <ScalarProperty Name="AD_MSITMCAT_Id" ColumnName="AD_MSITMCAT_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Descrption" ColumnName="Descrption" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AD_MSITMUNIT">
+            <EntityTypeMapping TypeName="SundriesMarketModel.AD_MSITMUNIT">
+              <MappingFragment StoreEntitySet="AD_MSITMUNIT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="MachineIp" ColumnName="MachineIp" />
+                <ScalarProperty Name="MS_COMCRE_Id" ColumnName="MS_COMCRE_Id" />
+                <ScalarProperty Name="AD_MSITMCAT_Id" ColumnName="AD_MSITMCAT_Id" />
+                <ScalarProperty Name="AD_MSITMTYPE_Id" ColumnName="AD_MSITMTYPE_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MS_COMCRE">
+            <EntityTypeMapping TypeName="SundriesMarketModel.MS_COMCRE">
+              <MappingFragment StoreEntitySet="MS_COMCRE">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+                <ScalarProperty Name="MachineIP" ColumnName="MachineIP" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="AboutUs" ColumnName="AboutUs" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="FAddress" ColumnName="FAddress" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="Mobile1" ColumnName="Mobile1" />
+                <ScalarProperty Name="Mobile2" ColumnName="Mobile2" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="GSTNo" ColumnName="GSTNo" />
+                <ScalarProperty Name="PANNo" ColumnName="PANNo" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Stamp" ColumnName="Stamp" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

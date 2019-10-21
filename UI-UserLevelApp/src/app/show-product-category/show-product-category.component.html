@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Product Category
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <header>Default Size</header>
+  <section *ngFor="let i of itemType">
+      <button class="button blue-button circular-button" (click)="openItemType(i);">{{i}}</button>
+      <!-- <button class="button green-button circular-button">Test 2</button>
+      <button class="button orange-button circular-button">Test 3</button> -->
+  </section>
+</ion-content>
